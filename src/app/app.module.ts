@@ -1,3 +1,4 @@
+import { EmployeeService } from 'src/app/services/employee.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -15,10 +16,17 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
 
+// MDB Bootstrap
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 // Material Design
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+
+// import {MatPaginator} from '@angular/material/paginator';
+// import {MatTableDataSource} from '@angular/material/table';
+// import {MatSort} from '@angular/material/sort';
+// import {MatTableDataSource} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -36,8 +44,12 @@ import {MatTableDataSource} from '@angular/material/table';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MDBBootstrapModule.forRoot(),
+    MatButtonModule,
+    MatIconModule,
   ],
-  providers: [UserService],
+  providers: [UserService, EmployeeService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

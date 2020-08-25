@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
+
   public isAuthencticatedUser: boolean;
 
   constructor(private _userService: UserService) { }
@@ -15,5 +15,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isAuthencticatedUser = this._userService.isAuthenticatedUser()
   }
+
+  openDialog() {}
 
 }

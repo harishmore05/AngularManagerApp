@@ -1,3 +1,6 @@
-table {
-    width: 100%;
-  }
+#employee-table {
+    margin: 10 px;
+}
+tr > a{
+   margin: auto 2px;
+}

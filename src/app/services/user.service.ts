@@ -1,3 +1,4 @@
+import { User } from './../models/signInData';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
@@ -25,13 +26,13 @@ export class UserService {
   
   // public login(signInData: SignInData){
   public login(formData){
-    console.log('User : ', formData)
+    // console.log('User : ', formData)
     this.http.post('http://127.0.0.1:8000/api/user/login/', formData)
     .subscribe(
       data => {
-          console.log('Token: ', data['user'])
+          // console.log('Token: ', data['user'])
           this.updateData(data['token'])
-          console.log('Error: ', data['error']);
+          // console.log('Error: ', data['error']);
           this.errors = data['error']
           if(data['error'] == null){
             this.errors = ''
@@ -43,7 +44,7 @@ export class UserService {
           }
       },
       err => {
-        console.log(err['error']);
+        // console.log(err['error']);
         this.errors = err['error'];
       }
     );
@@ -54,7 +55,7 @@ export class UserService {
     this.http.post('http://127.0.0.1:8000/api/user/', JSON.stringify(user), this.httpOptions)
     .subscribe(
       data => {
-        console.log(data['first_name'])
+        // console.log(data['first_name'])
         this.signUpSuccess = 'SignUp Successfull'
         this.router.navigate(['/login'], { relativeTo: this.route });
       },
