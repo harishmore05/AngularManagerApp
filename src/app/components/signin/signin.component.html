@@ -1,0 +1,20 @@
+<div class="login-wrapper">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-signin" method="POST" (ngSubmit)="onSubmit(signInForm)" #signInForm="ngForm">
+                
+                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ngModel required autofocus>
+                
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" ngModel required>
+                <p *ngIf="_userService.loginSuccess"><span class="text-success">{{ _userService.loginSuccess }}</span></p>
+                <p *ngIf="_userService.errors"><span class="text-danger">{{ _userService.errors }}</span></p>
+                <button class="btn btn-md btn-primary" type="submit">Sign in</button>
+                <button routerLink="/register" class="btn btn-md btn-danger float-right px-5">Register</button>
+            </form>
+        </div>
+    </div>
+</div>

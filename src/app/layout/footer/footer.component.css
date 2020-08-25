@@ -1,0 +1,6 @@
+footer{
+    background: rgba(0, 0, 0, 0.2);
+    height: 50px;
+    background-attachment: fixed;
+    position: fixed;
+  }

@@ -1,0 +1,30 @@
+<div class="login-wrapper">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-signin" method="POST" (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+                <!-- (ngSubmit)="onSubmit(signInForm)" -->
+                <h1 class="h3 mb-3 font-weight-normal">Registration</h1>
+
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ngModel required autofocus>
+                
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" ngModel required>
+                
+                <label for="inputPassword" class="sr-only">Confirm Password</label>
+                <input type="password" id="inputConfirmPassword" name="confPassword" class="form-control" placeholder="Confirm Password" ngModel required>
+                
+                <label for="inputPassword" class="sr-only">First Name</label>
+                <input type="text" id="inputFirstName" name="firstName" class="form-control" placeholder="First Name" ngModel required>
+                
+                <label for="inputPassword" class="sr-only">Last Name</label>
+                <input type="text" id="inputLastName" name="lastName" class="form-control" placeholder="Last Name" ngModel required>
+
+                <p *ngIf="_userService.signUpSuccess"><span class="text-success">{{ _userService.signUpSuccess }}</span></p>
+                <p *ngIf="_userService.errors"><span class="text-danger">{{ _userService.errors }}</span></p>
+                <button class="btn btn-md btn-primary" type="submit">Get Register</button>
+                <button routerLink="/login" class="btn btn-md btn-danger float-right px-3">Already have an account</button>
+            </form>
+        </div>
+    </div>
+</div>
