@@ -12,6 +12,13 @@ import { SigninComponent } from './components/signin/signin.component';
 import { UserService } from './services/user.service';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EmployeeDashboardComponent } from './components/employee-dashboard/employee-dashboard.component';
+
+
+// Material Design
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -20,13 +27,15 @@ import { HomeComponent } from './components/home/home.component';
     FooterComponent,
     SigninComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    EmployeeDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
