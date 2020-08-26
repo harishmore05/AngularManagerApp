@@ -1,3 +1,4 @@
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
@@ -11,13 +12,16 @@ export class SigninComponent implements OnInit {
   
   public user: any;
 
-  constructor (public _userService: UserService) { }
+  constructor (public _userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.user ={
       email: '',
       password: '',
     };
+    if(this._userService.isAuthenticatedUser()){
+      this.router.navigate(['/login'], { relativeTo: this.route });
+    }
   }
   
 

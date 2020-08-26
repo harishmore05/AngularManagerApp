@@ -8,6 +8,9 @@ import { Employee } from '../models/Employee';
 export class EmployeeService {
   public employees:Employee = []
   private httpOptions: any;
+  public errors: any = []
+  public addEmpSuccess:any = []
+  public updatedEmployee: any
   constructor(private http: HttpClient) {
     this.httpOptions ={
       headers : new HttpHeaders({"Content-Type": "application/json",
@@ -23,6 +26,49 @@ export class EmployeeService {
       },
       err =>{
         console.log("Error: ", err['error'])
+      }
+    )
+  }
+
+  public addNewEmployee(formData){
+    this.http.post('http://127.0.0.1:8000/api/employee/', JSON.stringify(formData), this.httpOptions)
+    .subscribe(
+      data => {
+          if(data){
+            this.errors = ''
+            this.addEmpSuccess = 'Employee Added Sucessfully'
+          }
+      },
+      err => {
+        if (err){
+          this.addEmpSuccess =''
+          this.errors = err['error']['email']
+          console.log("Error: ", err['error']['email'])
+        }
+      }
+    )
+  }
+
+  public deleteEmployee(id: any){
+    console.log("From Employee Sevices: ",'http://127.0.0.1:8000/api/employee/'+id+'/')
+    this.http.delete('http://127.0.0.1:8000/api/employee/'+String(id)+'/', this.httpOptions)
+    .subscribe(
+      err=>{
+        console.log(err)
+      }
+    )
+  }
+
+  public updateEmployee(id: any, employee: any){
+    console.log('Stringfied Object Emp:', JSON.stringify(employee))
+    this.http.patch('http://127.0.0.1:8000/api/employee/'+String(id)+'/', JSON.stringify(employee), this.httpOptions)
+    .subscribe(
+      data => {
+        this.updatedEmployee = data['success'];
+        console.log("Successfully Updated", this.updateEmployee)
+      },
+      err => {
+        console.error('Error while updating: ', err['error'])
       }
     )
   }

@@ -6,3 +6,9 @@
   display: flex;
   justify-content: center;
 }
+input{
+  margin-bottom: 10px;
+}
+img #logo {
+  width:50px;
+}

@@ -4,3 +4,7 @@
 tr > a{
    margin: auto 2px;
 }
+
+form > input{
+    margin-bottom: 10px;
+  }

@@ -1,15 +1,69 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="isAuthencticatedUser">
-    <a class="navbar-brand" href="#">Manager App</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" class="btn" id="addBtn"> Add Employee <Span><mat-icon>add</mat-icon></Span></a>
-        <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#" >SignOut</a>
-        <a class="nav-item nav-link" href="#">SignUp</a>
-        <!-- <a class="nav-item nav-link disabled" href="#">Disabled</a> -->
+  <a class="navbar-brand" href="#">Manager App</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <p class="text-white">{{ user.email }}</p>
+      <a class="nav-item nav-link" type="button" class="btn" data-toggle="modal" data-target="#exampleModal"
+        id="addBtn"> Add Employee <Span>
+          <mat-icon>add</mat-icon>
+        </Span></a>
+
+      <a type="button" class="nav_item nav-link">
+        <img class="d-inline-block mr-1" id="logo" height="30" src="../../../assets/expire.png" *ngIf="user.is_subscribed" alt="">
+      </a>
+      <a type="button" aria-disabled="true" class="nav_item nav-link">
+        <img class="d-inline-block mr-1" id="logo" height="30" src="../../../assets/subscription.png" *ngIf="!user.is_subscribed" alt="">
+      </a>
+      <a class="nav-item nav-link active" >Home <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" (click)="logout()" type="button">SignOut</a>
+    </div>
+  </div>
+</nav>
+
+  <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="h3 mb-3 font-weight-normal">Enter Employee Details</h1>
+      </div>
+      <div class="modal-body">
+        <!-- (ngSubmit)="onSubmit(signUpForm)" -->
+        <form class="form-signin" (ngSubmit)="onSubmit(addEmployee)" #addEmployee="ngForm">
+
+          <label for="inputEmail" class="sr-only">Email</label>
+          <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" ngModel
+            required autofocus>
+
+          <label for="inputFirstName" class="sr-only">First Name</label>
+          <input type="text" id="inputFirstName" name="first_name" class="form-control" placeholder="First Name" ngModel
+            required>
+
+          <label for="inputLastName" class="sr-only">Last Name</label>
+          <input type="text" id="inputLastName" name="last_name" class="form-control" placeholder="Last Name" ngModel
+            required>
+
+          <label for="inputCompany" class="sr-only">Company</label>
+          <input type="text" id="inputCompany" name="company" class="form-control" placeholder="Company" ngModel
+            required>
+
+          <label for="inputMobile" class="sr-only">Mobile No</label>
+          <input type="text" id="inputMobile" name="mobile" class="form-control" placeholder="Mobile No" ngModel
+            required>
+
+          <label for="inputCity" class="sr-only">City</label>
+          <input type="text" id="inputCity" name="city" class="form-control" placeholder="City" ngModel required>
+          <p *ngIf="_empService.addEmpSuccess"><span class="text-success">{{ _empService.addEmpSuccess }}</span></p>
+          <p *ngIf="_empService.errors"><span class="text-danger">{{ _empService.errors }}</span></p>
+          <button class="btn btn-md btn-danger" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-md btn-primary float-right px-3" type="submit">Add Employee</button>
+        </form>
       </div>
     </div>
-  </nav>
+  </div>
+</div>

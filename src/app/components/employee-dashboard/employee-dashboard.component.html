@@ -1,43 +1,76 @@
 <div id="employee-table" class="container-fluid m-2">
   <table id="example" class="table table-striped table-bordered" style="width:100%">
     <thead>
-        <tr>
-            <th>ID</th>
-            <th>Email</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>City</th>
-            <th>Mobile</th>
-            <th>Manage</th>
-        </tr>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>City</th>
+        <th>Mobile</th>
+        <th>Manage</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let employee of emp.employees">
-            <td>{{ employee.url.split("/").slice(-2)[0] }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.first_name }}</td>
-            <td>{{ employee.last_name }}</td>
-            <td>{{ employee.city }}</td>
-            <td>{{ employee.mobile }}</td>
-            <a href="" class="btn text-danger"><mat-icon>delete</mat-icon></a>
-            <a href="" class="btn text-warning"><mat-icon>edit</mat-icon></a>
-            <!-- <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-              <mat-icon>delete</mat-icon>
-            </button> -->
-        </tr>
+      <tr *ngFor="let employee of _empService.employees">
+        <td>{{ employee.url.split("/").slice(-2)[0] }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.first_name }}</td>
+        <td>{{ employee.last_name }}</td>
+        <td>{{ employee.city }}</td>
+        <td>{{ employee.mobile }}</td>
+        <a type="button" class="btn text-danger" (click)="onDelete(employee)">
+          <mat-icon>delete</mat-icon>
+        </a>
+        <a type="button" class="btn text-warning" (click)="openModal(editEmployeeModal, employee)">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </tr>
     </tbody>
-    <tfoot>
-        <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Start date</th>
-            <th>Salary</th>
-        </tr>
-    </tfoot>
   </table>
 </div>
+<!-- Edit Empolyee Data Form -->
+<ng-template #editEmployeeModal let-modal>
+  <div class="modal-header">
+    <h1 class="h3 font-weight-normal modal-title">Enter Employee Details</h1>
+  </div>
+  <div class="modal-body">
+    <form #updateForm="ngForm" class="form-update-orm" (ngSubmit)="onSubmit(updateForm)">
+
+      <label for="inputID" class="sr-only">ID</label>
+      <input type="text" id="inputID" [(ngModel)]="id" hidden name="id" class="form-control" placeholder="ID" ngModel
+        required autofocus>
+
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" [(ngModel)]="email" name="email" class="form-control"
+        placeholder="Email address" ngModel required autofocus>
+
+      <label for="inputFirstName" class="sr-only">First Name</label>
+      <input type="text" id="inputFirstName" [(ngModel)]="first_name" name="first_name" class="form-control"
+        placeholder="First Name" ngModel required>
+
+      <label for="inputLastName" class="sr-only">Last Name</label>
+      <input type="text" id="inputLastName" [(ngModel)]="last_name" name="last_name" class="form-control"
+        placeholder="Last Name" ngModel required>
+
+      <label for="inputCompany" class="sr-only">Company</label>
+      <input type="text" id="inputCompany" [(ngModel)]="company" name="company" class="form-control"
+        placeholder="Company" ngModel required>
+
+      <label for="inputMobile" class="sr-only">Mobile No</label>
+      <input type="text" id="inputMobile" [(ngModel)]="mobile" name="mobile" class="form-control"
+        placeholder="Mobile No" ngModel required>
+
+      <label for="inputCity" class="sr-only">City</label>
+      <input type="text" id="inputCity" [(ngModel)]="city" name="city" class="form-control" placeholder="City" ngModel
+        required>
+
+      <button class="btn btn-md btn-danger" (click)="modal.dismiss('Cross click')">Close</button>
+      <button class="btn btn-md btn-primary float-right px-3" type="submit">Edit Employee</button>
+    </form>
+  </div>
+</ng-template>
+
 <script>
 $(document).ready(function() {
   $('#example').DataTable();
