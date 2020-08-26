@@ -6,7 +6,7 @@ import { Employee } from '../models/Employee';
   providedIn: 'root'
 })
 export class EmployeeService {
-  public employees:Employee = []
+  public employees: any = []
   private httpOptions: any;
   public errors: any = []
   public addEmpSuccess:any = []
@@ -50,13 +50,17 @@ export class EmployeeService {
   }
 
   public deleteEmployee(id: any){
-    console.log("From Employee Sevices: ",'http://127.0.0.1:8000/api/employee/'+id+'/')
     this.http.delete('http://127.0.0.1:8000/api/employee/'+String(id)+'/', this.httpOptions)
     .subscribe(
       err=>{
         console.log(err)
       }
     )
+    const indexOfEmployee = this.employees.findIndex(
+      employees => employees.id === employees.url.split("/").slice(-2)[0]
+    );
+    console.log('Index of employees : ', indexOfEmployee)
+    this.employees.splice(indexOfEmployee, 1)
   }
 
   public updateEmployee(id: any, employee: any){
