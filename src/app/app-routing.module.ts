@@ -8,24 +8,29 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
+  // Route login page if "" nothing is methion after server ip
   {
     path:'',
     redirectTo: 'login',
     pathMatch: 'full'
   },
+  // Route to login 
   {
     path:'login',
     component: SigninComponent,
   },
+  // Route to signup page
   {
     path:'register',
     component: RegisterComponent,
   },
+  // Route to home page 
   {
     path: 'home',
     component: HomeComponent,
     canActivate: [AuthGuard]
   },
+  // Route to page not found if url is not match with any of above
   {
     path: '**' ,
     component: PageNotFoundComponent,

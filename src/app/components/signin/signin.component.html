@@ -10,8 +10,11 @@
                 
                 <label for="inputPassword" class="sr-only">Password</label>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" ngModel required>
+
                 <p *ngIf="_userService.loginSuccess"><span class="text-success">{{ _userService.loginSuccess }}</span></p>
+                
                 <p *ngIf="_userService.errors"><span class="text-danger">{{ _userService.errors }}</span></p>
+                
                 <button class="btn btn-md btn-primary" type="submit">Sign in</button>
                 <button routerLink="/register" class="btn btn-md btn-danger float-right px-5">Register</button>
             </form>

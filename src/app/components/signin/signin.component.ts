@@ -9,9 +9,9 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-  
-  public user: any;
 
+  public user: any;
+  private formData: any = new FormData()
   constructor (public _userService: UserService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
@@ -20,19 +20,20 @@ export class SigninComponent implements OnInit {
       password: '',
     };
     if(this._userService.isAuthenticatedUser()){
-      this.router.navigate(['/login'], { relativeTo: this.route });
+      this.router.navigate(['/home'], { relativeTo: this.route });
     }
   }
-  
 
   onSubmit(signInForm: NgForm){
-    this.user.email = signInForm.value.email;
-    this.user.password = signInForm.value.password;
-    console.log("User :", signInForm.value.email)
-    let formData = new FormData()
-    formData.append("email", signInForm.value.email)
-    formData.append("password", signInForm.value.password)
-    this._userService.login(formData)
-  }
+    // this.user.email = signInForm.value.email;
+    // this.user.password = signInForm.value.password;
+    // console.log("User :", formData.get('email'))
 
+    // Set value to form data 
+    this.formData.append("email", signInForm.value.email)
+    this.formData.append("password", signInForm.value.password)
+
+    // Request for login using user services
+    this._userService.login(this.formData)
+  }
 }

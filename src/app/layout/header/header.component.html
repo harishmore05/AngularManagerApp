@@ -58,8 +58,11 @@
 
           <label for="inputCity" class="sr-only">City</label>
           <input type="text" id="inputCity" name="city" class="form-control" placeholder="City" ngModel required>
+
           <p *ngIf="_empService.addEmpSuccess"><span class="text-success">{{ _empService.addEmpSuccess }}</span></p>
+          
           <p *ngIf="_empService.errors"><span class="text-danger">{{ _empService.errors }}</span></p>
+          
           <button class="btn btn-md btn-danger" data-dismiss="modal">Cancel</button>
           <button class="btn btn-md btn-primary float-right px-3" type="submit">Add Employee</button>
         </form>

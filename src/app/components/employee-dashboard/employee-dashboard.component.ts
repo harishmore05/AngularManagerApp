@@ -25,16 +25,20 @@ export class EmployeeDashboardComponent implements OnInit {
     this._empService.getEmployeeData()
   }
   
+  // Delete employee request 
   onDelete(employee){
     console.log(employee.url.split("/").slice(-2)[0])
     this._empService.deleteEmployee(employee.url.split("/").slice(-2)[0])
   }
-
+  
+  // Opan Bootstrap Modal on Edit employee tab
   openModal(targetModal, employee) {
     this.modalService.open(targetModal, {
      centered: false,
     });
+
     // console.log("From Open mmodal ",employee.email)
+    // set values to existing employee detail to form
     this.id = employee.url.split("/").slice(-2)[0]
     this.email = employee.email
     this.first_name = employee.first_name
@@ -44,6 +48,7 @@ export class EmployeeDashboardComponent implements OnInit {
     this.company = employee.company
   }
 
+  // Update employee Details using employee service
   onSubmit(updateForm: NgForm){
     console.log("From Form: ", updateForm.value.id)
     this._empService.updateEmployee(updateForm.value.id, {

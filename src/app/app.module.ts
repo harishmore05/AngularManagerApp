@@ -24,6 +24,7 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 // import {MatDialog} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { PaymentComponent } from './components/payment/payment.component';
 
 // import {MatPaginator} from '@angular/material/paginator';
 // import {MatTableDataSource} from '@angular/material/table';
@@ -39,7 +40,8 @@ import { MatIconModule } from '@angular/material/icon';
     RegisterComponent,
     HomeComponent,
     EmployeeDashboardComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

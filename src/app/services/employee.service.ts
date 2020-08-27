@@ -11,13 +11,16 @@ export class EmployeeService {
   public errors: any = []
   public addEmpSuccess:any = []
   public updatedEmployee: any
+
   constructor(private http: HttpClient) {
+    // Http Header
     this.httpOptions ={
       headers : new HttpHeaders({"Content-Type": "application/json",
                                   'Authorization': 'Basic ' + btoa('harishmore05@gmail.com:12345')})
     }
   }
-
+  
+  // Request for all Employees details to Django Server
   public getEmployeeData(){
     this.http.get('http://127.0.0.1:8000/api/employee/', this.httpOptions)
     .subscribe(
@@ -29,7 +32,8 @@ export class EmployeeService {
       }
     )
   }
-
+  
+  // Add New Employee
   public addNewEmployee(formData){
     this.http.post('http://127.0.0.1:8000/api/employee/', JSON.stringify(formData), this.httpOptions)
     .subscribe(
@@ -48,7 +52,8 @@ export class EmployeeService {
       }
     )
   }
-
+  
+  // Delete Employee
   public deleteEmployee(id: any){
     this.http.delete('http://127.0.0.1:8000/api/employee/'+String(id)+'/', this.httpOptions)
     .subscribe(
@@ -63,6 +68,7 @@ export class EmployeeService {
     this.employees.splice(indexOfEmployee, 1)
   }
 
+  // Uodate Employee method
   public updateEmployee(id: any, employee: any){
     console.log('Stringfied Object Emp:', JSON.stringify(employee))
     this.http.patch('http://127.0.0.1:8000/api/employee/'+String(id)+'/', JSON.stringify(employee), this.httpOptions)
