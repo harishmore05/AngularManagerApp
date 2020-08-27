@@ -54,7 +54,7 @@ export class EmployeeService {
   }
   
   // Delete Employee
-  public deleteEmployee(id: any){
+  public deleteEmployee(id: any, employee){
     this.http.delete('http://127.0.0.1:8000/api/employee/'+String(id)+'/', this.httpOptions)
     .subscribe(
       err=>{
@@ -62,7 +62,7 @@ export class EmployeeService {
       }
     )
     const indexOfEmployee = this.employees.findIndex(
-      employees => employees.id === employees.url.split("/").slice(-2)[0]
+      currentEmployee => currentEmployee.email === employee.email
     );
     console.log('Index of employees : ', indexOfEmployee)
     this.employees.splice(indexOfEmployee, 1)

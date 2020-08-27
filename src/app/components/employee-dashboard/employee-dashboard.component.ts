@@ -28,7 +28,7 @@ export class EmployeeDashboardComponent implements OnInit {
   // Delete employee request 
   onDelete(employee){
     console.log(employee.url.split("/").slice(-2)[0])
-    this._empService.deleteEmployee(employee.url.split("/").slice(-2)[0])
+    this._empService.deleteEmployee(employee.url.split("/").slice(-2)[0], employee)
   }
   
   // Opan Bootstrap Modal on Edit employee tab
