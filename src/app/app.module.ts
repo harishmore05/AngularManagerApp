@@ -26,6 +26,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PaymentComponent } from './components/payment/payment.component';
 
+// ngx-toastr component
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+
 // import {MatPaginator} from '@angular/material/paginator';
 // import {MatTableDataSource} from '@angular/material/table';
 // import {MatSort} from '@angular/material/sort';
@@ -49,9 +53,11 @@ import { PaymentComponent } from './components/payment/payment.component';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot(),
     MatButtonModule,
     MatIconModule,
+    CommonModule,
   ],
   providers: [UserService, EmployeeService],
   bootstrap: [AppComponent]

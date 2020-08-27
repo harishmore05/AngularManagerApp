@@ -2,6 +2,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 import { NgForm } from '@angular/forms';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,8 @@ export class HeaderComponent implements OnInit {
     this.isAuthencticatedUser = this._userService.isAuthenticatedUser()
     this.user = JSON.parse(localStorage.getItem('user'))
   }
-
+  
+  // add  employee method
   onSubmit(formData: NgForm){
     this._empService.addNewEmployee({
       "email": formData.value.email,
@@ -30,8 +32,11 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  // logout method
   logout(){
-    this._userService.logout()
+    let currentUser:any = JSON.parse(localStorage.getItem('user'))
+    // console.log("From logout : ", currentUser['id'])
+    this._userService.logout(currentUser['id'])
   }
 
 }
