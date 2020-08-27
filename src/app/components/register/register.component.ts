@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
   // SignUp user 
   onSubmit(signUpForm: NgForm){
 
-    // If bothe password matches send it to  user services for login
+    // If both password matches send it to  user services for login
     if (signUpForm.value.password == signUpForm.value.confPassword){
       this._userService.signUp({
         'email': signUpForm.value.email,
